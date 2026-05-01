@@ -75,13 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mobileMenu && navLinks) {
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            mobileMenu.classList.toggle('active'); // Memicu animasi "X"
+            mobileMenu.classList.toggle('active'); 
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active'); // Menutup animasi "X"
+                mobileMenu.classList.remove('active'); 
             });
         });
     }
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let isInteracting = false;
         let startX;
         let scrollLeft;
-        let scrollDirection = 1; // 1 = Kanan, -1 = Kiri
+        let scrollDirection = 1; 
         let exactScrollLeft = slider.scrollLeft;
 
         const smoothAutoScroll = () => {
@@ -161,6 +161,31 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 isInteracting = false;
             }, 1500); 
+        });
+    }
+
+    // ================================================================ //
+    // 6. LOGIKA TOMBOL BACK TO TOP                                     //
+    // ================================================================ //
+    const backToTopBtn = document.getElementById("backToTop");
+    
+    if (backToTopBtn) {
+        // Tampilkan tombol saat di-scroll ke bawah 300px
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+
+        // Klik tombol untuk meluncur mulus ke atas
+        backToTopBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
     }
 });
